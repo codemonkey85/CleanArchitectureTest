@@ -366,3 +366,10 @@ FodyWeavers.xsd
 
 .vscode
 .idea
+
+*.sln.iml
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+
+log*.txt
