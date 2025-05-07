@@ -3,6 +3,7 @@ using CleanArchitectureTest.Core.Services;
 using CleanArchitectureTest.Infrastructure.Data;
 using CleanArchitectureTest.Infrastructure.Data.Queries;
 using CleanArchitectureTest.UseCases.Contributors.List;
+using CleanArchitectureTest.UseCases.ToDos.List;
 
 
 namespace CleanArchitectureTest.Infrastructure;
@@ -21,6 +22,7 @@ public static class InfrastructureServiceExtensions
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
            .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
            .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
+           .AddScoped<IListToDosQueryService, ListToDosQueryService>()
            .AddScoped<IDeleteContributorService, DeleteContributorService>();
 
 

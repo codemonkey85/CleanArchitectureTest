@@ -2,7 +2,6 @@
 using Ardalis.SharedKernel;
 using CleanArchitectureTest.Core.ContributorAggregate;
 using CleanArchitectureTest.UseCases.Contributors.Create;
-using MediatR;
 
 namespace CleanArchitectureTest.Web.Configurations;
 public static class MediatrConfigs

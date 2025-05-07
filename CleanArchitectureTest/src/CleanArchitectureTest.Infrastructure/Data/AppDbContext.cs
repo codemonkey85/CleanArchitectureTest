@@ -1,4 +1,5 @@
 ﻿using CleanArchitectureTest.Core.ContributorAggregate;
+using CleanArchitectureTest.Core.ToDoAggregate;
 
 namespace CleanArchitectureTest.Infrastructure.Data;
 public class AppDbContext(DbContextOptions<AppDbContext> options,
@@ -7,6 +8,8 @@ public class AppDbContext(DbContextOptions<AppDbContext> options,
   private readonly IDomainEventDispatcher? _dispatcher = dispatcher;
 
   public DbSet<Contributor> Contributors => Set<Contributor>();
+
+  public DbSet<ToDo> ToDos => Set<ToDo>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
@@ -24,7 +27,7 @@ public class AppDbContext(DbContextOptions<AppDbContext> options,
     // dispatch events only if save was successful
     var entitiesWithEvents = ChangeTracker.Entries<HasDomainEventsBase>()
         .Select(e => e.Entity)
-        .Where(e => e.DomainEvents.Any())
+        .Where(e => e.DomainEvents.Count != 0)
         .ToArray();
 
     await _dispatcher.DispatchAndClearEvents(entitiesWithEvents);
